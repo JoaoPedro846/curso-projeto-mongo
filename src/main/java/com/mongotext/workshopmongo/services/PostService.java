@@ -14,12 +14,12 @@ public class PostService {
     @Autowired
     private PostRepository repo;
 
-    public List<Post> findAll() {
-        return repo.findAll();
-    }
-
     public Post findById(String id){
         return repo.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
+    public List<Post> findByTitle(String text) {
+        return repo.findByTitleContainingIgnoreCase(text);
     }
 }
